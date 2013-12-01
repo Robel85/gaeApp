@@ -13,6 +13,7 @@ public class Bean implements Serializable {
 	
 	private String name;
 	private String test;
+	 String pfad="static/img/GoogleMaps/6/33/19.png.tile";
 
 	public String getName() {
 		return name;

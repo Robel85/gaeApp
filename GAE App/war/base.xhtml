@@ -5,9 +5,20 @@
    xmlns:f="http://java.sun.com/jsf/core"
    xmlns:h="http://java.sun.com/jsf/html"
    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Welcome to the Map APP on the Google AppEngine!</title>
+				<style>
+			body {
+			padding-top: 60px;
+			margin-left: 200px;
+			}
+		</style>
+</h:head>
    
 <h:body>
-	<ui:insert name="header">
+	<ui:insert name="imports">
 	<ui:include src="staticFilesTemplate.xhtml"/> 
 	</ui:insert>
 	
@@ -15,9 +26,14 @@
 	<ui:include src="navbarTemplate.xhtml"/>
 	</ui:insert>
 	
-	<ui:insert name="content">
-	<ui:include src=""/>
-	</ui:insert>
+	<div id="center_container">
+		<div id="map" onmouseover="load()">
+			<ui:insert name="content">
+				<ui:include src="content.xhtml"/>
+			</ui:insert>
+		</div>
+	</div>
+
 	
 	<ui:insert name="foot">
 	<ui:include src="endofFileJS.xhtml"/> 

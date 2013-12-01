@@ -23,7 +23,7 @@ function init_maptilesAnimate() {
 						'GPS-Position linke obere Ecke: Breite '
 								+ number_format(tile2lat(base_tile_y, zoom), 7,
 										'.', '')
-								+ ', Länge '
+								+ ', Laenge '
 								+ number_format(tile2long(base_tile_x, zoom),
 										7, '.', '')
 								+ '<br />'
@@ -43,7 +43,7 @@ function init_maptilesAnimate() {
 								+ '<br /> GPS-Position: Breite '
 								+ number_format(tile2lat(pixel2tileslat(
 										base_tile_y, rel_y), zoom), 7, '.', '')
-								+ ', Länge '
+								+ ', Laenge '
 								+ number_format(tile2long(pixel2tileslong(
 										base_tile_x, rel_x), zoom), 7, '.', '')
 

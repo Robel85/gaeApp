@@ -8,21 +8,17 @@
    
    
 <body>
-	<ui:composition>
-		<h:head>
-			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-			<title>Welcome to the Map APP on the Google AppEngine!</title>
-			  		    
-			<link type="text/css" rel="stylesheet" href="/static/css/project.css"/>
-			<link type="text/css" rel="stylesheet" href="/static/css/bootstrap.min.css"/>    
-			<link type="text/css" rel="stylesheet" href="/static/css/bootstrap-responsive.min.css"/>tput
-			<script type="text/javascript" src="/static/js/maptilesCoordinates.js"></script>
-			<script type="text/javascript" src="/static/js/maptilesAnimate.js"></script>
-			<script type="text/javascript" src="/static/js/maptilesGetPoiInfo.js"></script>
-			<script type="text/javascript" src="/static/js/maptilesStorePoiInfo.js"></script>
-			
-		</h:head>
-		     
+	<ui:composition>	
+
+		<h:outputStylesheet library="css" name="project.css"  />
+		<h:outputStylesheet library="css" name="bootstrap.min.css"  /> 
+		<h:outputStylesheet library="css" name="bootstrap-responsive.min.css"  />
+		
+		<h:outputScript library="js" name="maptilesCoordinates.js" />
+		<h:outputScript library="js" name="maptilesAnimate.js" />
+		<h:outputScript library="js" name="maptilesGetPoiInfo.js" />
+		<h:outputScript library="js" name="maptilesStorePoiInfo.js" /> 
+			    	     
 	</ui:composition>
 </body>
 
