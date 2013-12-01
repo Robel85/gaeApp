@@ -1,0 +1,28 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets">
+   
+<h:body>
+	<ui:insert name="header">
+	<ui:include src="staticFilesTemplate.xhtml"/> 
+	</ui:insert>
+	
+	<ui:insert name="navbar">
+	<ui:include src="navbarTemplate.xhtml"/>
+	</ui:insert>
+	
+	<ui:insert name="content">
+	<ui:include src=""/>
+	</ui:insert>
+	
+	<ui:insert name="foot">
+	<ui:include src="endofFileJS.xhtml"/> 
+	</ui:insert>
+</h:body>
+
+
+</html>

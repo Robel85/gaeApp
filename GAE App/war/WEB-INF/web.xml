@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+ 	<display-name>
+    Wildstar Technologies, LLC. Google App Engine JSF 2.2 Template
+   </display-name>
+   
+   <description>
+    Google App Engine Map App
+   </description>
+   
+   <!-- ***** Designate client-side state saving. *****  -->
+   <context-param>
+      <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+      <param-value>client</param-value>
+   </context-param>
+   
+   <!-- Set the default suffix for JSF pages to .xhtml -->
+   <context-param>
+      <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+      <param-value>.xhtml</param-value>
+   </context-param>
+   
+   <managed-bean>
+	  <managed-bean-name>Bean</managed-bean-name>
+	  <managed-bean-class>gae.Bean</managed-bean-class>
+	  <managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+ 
+   <!-- Disable use of threading for single-threaded environments such as
+        the Google AppEngine. -->
+   <context-param>
+      <param-name>com.sun.faces.enableThreading</param-name>
+      <param-value>false</param-value>
+   </context-param>
+   
+   <!-- ***** Specify Java Unified Expression Language 3.0 Over Default -->
+   <!-- 
+   <context-param>     
+      <param-name>com.sun.faces.expressionFactory</param-name>
+      <param-value>com.sun.el.ExpressionFactoryImpl</param-value>   
+   </context-param>
+   -->
+   <!-- ***** Load the JavaServer Faces Servlet ***** -->
+   <servlet>
+      <servlet-name>Faces Servlet</servlet-name>
+      <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>Faces Servlet</servlet-name>
+      <url-pattern>/faces/*</url-pattern>
+      <url-pattern>*.jsf</url-pattern>
+   </servlet-mapping>
+   <!-- ***** Specify session timeout of thirty (30) minutes. ***** -->
+   <session-config>
+      <session-timeout>30</session-timeout>
+   </session-config>
+   <welcome-file-list>
+      <welcome-file>index.jsp</welcome-file>
+      <welcome-file>index.xhtml</welcome-file>
+      <welcome-file>index.html</welcome-file>
+   </welcome-file-list>
+</web-app>
