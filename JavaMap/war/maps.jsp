@@ -33,6 +33,8 @@
 
 <script type="text/javascript" src="/javamap/javamap.nocache.js"/>
  </head>
+ 
+ 
  <body>
 <div class="container">
 	<%= new TemplatesHtml().buildNavbar() %> <%-- aufbauen der navigationsleiste--%>
