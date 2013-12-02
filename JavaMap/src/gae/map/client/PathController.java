@@ -3,15 +3,43 @@ package gae.map.client;
 import gae.map.models.MapSources;
 import gae.map.models.PathSource;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class PathController {
 	private MapSources maps = new MapSources();
-	Integer countY = 0;
-	Integer countX = 0;
-
-	public PathController(String s, Integer countX, Integer countY) {
-		maps.setMapName(s);
-		this.countX = countX;
-		this.countY = countY;
+	public Integer countY = 0;
+	public Integer countX = 0;
+	public String targetMap;
+	public Integer xDirection=0;
+	public Integer yDirection=0;
+	public HttpServletRequest request;
+	
+	public PathController(HttpServletRequest requester){
+		request = requester;
+		
+	}
+	
+	public void checkAndInitialize(){
+		
+		
+		if(request.getParameter("id")!=null&&request.getParameter("xCord")!=null&&
+				request.getParameter("yCord")!=null&&request.getParameter("yCord")!=null)
+		{
+			targetMap = (String) request.getParameter("id");
+			countY = Integer.parseInt(request.getParameter("yCord"));
+	 		countX = Integer.parseInt(request.getParameter("xCord"));
+		} else if(request.getParameter("id")!=null){
+			targetMap = (String) request.getParameter("id");
+			countY = 0;
+			countX = 0;
+		}
+		else{
+			targetMap = "GoogleMaps";
+			countY = 0;
+			countX = 0;
+		}
+		maps.setMapName(targetMap);
+		
 	}
 
 	public void parsePaths() {

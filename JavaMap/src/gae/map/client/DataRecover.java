@@ -5,33 +5,41 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+/* Klasse zum Abrufen der Pois aus der Datenbank und Rückgabe an maps.jsp*/
 
 public class DataRecover {
 
 	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+	PathController cont;
 
-	public DataRecover() {
-//		// Get the Datastore Service
-//
-//		// The Query interface assembles a query
-//		Query q = new Query("Persister");
-//
-//		q.addFilter("name", Query.FilterOperator.EQUAL, "as");
-//
-//		// PreparedQuery contains the methods for fetching query results
-//		// from the datastore
-//		PreparedQuery pq = datastore.prepare(q);
-//
-//		for (Entity result : pq.asIterable()) {
-//			String desc = (String) result.getProperty("description");
-//			String lati = (String) result.getProperty("latitude");
-//			String longi = (String) result.getProperty("longitude");
-//			System.out.println(desc + " " + lati + ", " + longi);
-//		}
-
+	public DataRecover(PathController conter) {
+		cont = conter;
+	}
+	
+	public void checkXY(){
+		//prüfen ob sicht verschoben wurde und poi-positionen anpassen
+		if(cont.countX==0&&cont.countY==-1){
+			cont.xDirection=0;
+			cont.yDirection=256;
+		}
+		else if(cont.countX==0&&cont.countY==1){
+			cont.xDirection=0;
+			cont.yDirection=-256;
+		}
+		else if(cont.countX==-1&&cont.countY==0){
+			cont.xDirection=256;
+			cont.yDirection=0;
+		}
+		else if(cont.countX==1&&cont.countY==0){
+			cont.xDirection=-256;
+			cont.yDirection=0;
+		} else{
+			cont.xDirection=0;
+			cont.yDirection=0;
+		}		
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //gibt alle gespeicherten pois als String zurück
 	public String printPoints(Integer counterX, Integer counterY)  {
 		String s = "";
 
@@ -72,29 +80,4 @@ public class DataRecover {
 		}
 		return s;
 	}
-
-	public String getName(String lati, String longi) {
-
-		String name = "";
-
-		if (lati.equals("") || longi.equals("")) {
-			return "";
-		}
-
-		else
-			return name;
-	}
-
-	public String getDescription(String name) {
-
-		String description = "";
-
-		if (name.equals("")) {
-			return "";
-		}
-
-		else
-			return description;
-	}
-
 }

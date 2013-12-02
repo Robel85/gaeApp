@@ -19,7 +19,7 @@ public class TemplatesHtml {
 		builder.append("<a class='brand' href='maps.jsp'>Map Application</a>");
 		builder.append("<div class='nav-collapse collapse'>");
 		builder.append("<ul class='nav'>");
-		builder.append("<li class='active'><a href='test.jsp'>Home</a></li>");
+		builder.append("<li class='active'><a href='maps.jsp'>Home</a></li>");
 		builder.append("<li><a href='#about'>About</a></li>");
 		builder.append("<li><a href='#contact'>Contact</a></li></ul>");
 		builder.append("</div></div></div></div>");
