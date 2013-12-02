@@ -4,6 +4,19 @@ ul
     font-weight: bold;
 }
 
+li 
+  {
+    display: inline;
+    list-style: none;
+  }
+li a, li a:link, li a:visited
+  {
+    display: block;
+    padding: 2px 5px 2px 5px;
+    float: left;
+    margin: 0 30px 0 0;
+  }
+
 .mapconfig{
 visibility:hidden;
 }

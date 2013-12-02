@@ -49,14 +49,14 @@ public class DataRecover {
 				if(x>0&&x<512){
 					if(y>0&&y<768)
 				s = s
-						+ "<a id='test' href=''><img border='0' style='position: absolute;"
+						+ "<a id='test' href='recover?"+result.getProperty("name")+"'><img border='0' style='position: absolute;"
 						+ " top:"
 						+ y.toString()
 						+ "px; "
 						+ "left:" 
 						+ x.toString()
 						+ "px;'"
-						+ " src='/static/img/kreis.png' alt='kreis' width='11' height='11' "
+						+ " src='/static/img/kreis.png' href='recover?"+result.getProperty("name")+"' alt='kreis' width='11' height='11' "
 						+ "name="+result.getProperty("name")+"></a><br/>";
 				}
 			}

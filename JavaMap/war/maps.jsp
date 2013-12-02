@@ -71,6 +71,11 @@
 	
 <p>	<div id="center_container">
 		<div id="map" onMouseOver="load()" >
+		<div id="mapsource" class="mapconfig"><%=targetMap %></div>
+		<div id="zoom" class="mapconfig">6</div>
+		<div id="xtile" class="mapconfig">33</div>
+		<div id="ytile" class="mapconfig">19</div>
+		<div id="format" class="mapconfig">png</div>
 			
 			<div id="nw">
 				<img src="<%= cont.getMaps().getWestPathList().get(0).getPath() %>"
@@ -101,15 +106,11 @@
 				
 				<!-- Show points of interest as image links; use a loop over a template variable -->
 			<div id="all_pois" class="poi" onmouseover="init_maptilesStorePoiInfo()">
-
-		<% 
+					<% 
 		
-			DataRecover rc = new DataRecover();
+			DataRecover dataRecover = new DataRecover();
 	
-		%>
-		
 
-		<%
 					if(countX==0&&countY==-1){
 						xDirection=0;
 						yDirection=256;
@@ -131,10 +132,10 @@
 					}		
 		%>
 				
-		<%= rc.printPoints(xDirection,yDirection)%> <! schleife die pois von datenbank holt und ausdruckt>
+		<%= dataRecover.printPoints(xDirection,yDirection)%> <! schleife die pois von datenbank holt und ausdruckt>
 		
-
-	</div>
+			
+			</div>
 		
 		<div id="mousepos"> </div>		
 		
@@ -169,26 +170,35 @@
 		 	</form>	
 
  		
-			<div id="chooseMaps" style="font-size: x-large; width:600px;">
+			<div id="chooseMaps" style="font-size: x-large; width:635px;">
+			<table>
 			
-			<ul>			
-				<li><a href="maps.jsp?id=GoogleMaps">GoogleMaps</a>
-				<li><a href="maps.jsp?id=Cloudmade">Cloudmade</a>	
-				<li><a href="maps.jsp?id=Mapnik">Mapnik</a>
-				<li><a href="maps.jsp?id=Relief">Relief</a>
-			</ul>
-
-				<td><a href="maps.jsp?id=<%=targetMap %>&xCord=0&yCord=-1">
-				<img alt="up" src="/static/img/arrow_up_4.png"></a>
-
-				<td><a href="maps.jsp?id=<%=targetMap %>&xCord=-1&yCord=0">
-				<img alt="left" src="/static/img/arrow_right_4.png"></a>
-				<td><a href="maps.jsp?id=<%=targetMap %>&xCord=1&yCord=0">
-				<img alt="left" src="/static/img/arrow_left_4.png"></a>
-
-				<td><a href="maps.jsp?id=<%=targetMap %>&xCord=0&yCord=1">
-				<img alt="up" src="/static/img/arrow_down_4.png"></a>
+			<tr>
+				<ul>			
+					<li><a href="maps.jsp?id=GoogleMaps">GoogleMaps</a></li>
+					<li><a href="maps.jsp?id=Cloudmade">Cloudmade</a>	</li>
+					<li><a href="maps.jsp?id=Mapnik">Mapnik</a></li>
+					<li><a href="maps.jsp?id=Relief">Relief</a></li>
+										<br><br><br>
+				</ul>
+			</tr>
 			
+				<tr>
+					<a href="maps.jsp?id=<%=targetMap %>&xCord=0&yCord=-1">
+					<img alt="up" src="/static/img/arrow_up_4.png" width="120px"></a>
+	
+					<a href="maps.jsp?id=<%=targetMap %>&xCord=-1&yCord=0">
+					<img alt="left" src="/static/img/arrow_right_4.png" width="120px"></a>
+					<a href="maps.jsp?id=<%=targetMap %>&xCord=0&yCord=0">
+					<img alt="left" src="/static/img/view_restore.png" width="120px"></a>
+					<a href="maps.jsp?id=<%=targetMap %>&xCord=1&yCord=0">
+					<img alt="left" src="/static/img/arrow_left_4.png" width="120px"></a>
+	
+	
+					<a href="maps.jsp?id=<%=targetMap %>&xCord=0&yCord=1">
+					<img alt="up" src="/static/img/arrow_down_4.png" width="120px"></a>
+				</tr>
+			</table>
 			</div>
  		</div>
 		 	
