@@ -1,0 +1,59 @@
+<!--- AJAX demo1: shows use of XML transfer with plain JavaScript
+Source:
+book by Stefan Koch: Java Script
+ISBN 978-3-89864.731-1
+
+Adapted to Django by FABR
+-->
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+XML with plain JavaScript
+{% endblock %}
+
+{% block content %}
+<h1>AJAX Demo 1</h1>
+<h2>Direktes JavaScript mit Daten&uuml;bertragung per XML</h2>
+
+Die roten Punkte bezeichnen Gro&szlig;st&auml;dte.</br>
+Fahren Sie mit der Maus &uuml;ber die Punkte.
+
+<p>
+<map name="staedte">
+        <area shape="circle" alt="Berlin"
+                coords="264,136,7" onmouseover="info(0)" />
+        <area shape="circle" alt="Hamburg"
+                coords="151,86,7" onmouseover="info(1)" />
+        <area shape="circle" alt="M&uuml;nchen"
+                coords="207,380,7" onmouseover="info(2)" />
+        <area shape="circle" alt="K&ouml;ln"
+                coords="46,233,7" onmouseover="info(3)" />
+        <area shape="circle" alt="Frankfurt"
+                coords="106,278,7" onmouseover="info(4)" />
+        <area shape="circle" alt="Stuttgart"
+                coords="126,353,7" onmouseover="info(5)" />
+        <area shape="circle" alt="Hannover"
+                coords="143,151,7" onmouseover="info(6)" />
+        <area shape="circle" alt="Dresden"
+                coords="276,219,7" onmouseover="info(7)" />
+        <area shape="circle" alt="Kiel"
+                coords="156,38,7" onmouseover="info(8)" />
+        <area shape="circle" alt="Rostock"
+                coords="223,49,7" onmouseover="info(9)" />
+</map>
+
+<img src="{{ STATIC_URL }}/img/karte.gif" alt="Karte Deutschland"
+        usemap="#staedte" style="border: 1px" width="337" height="441" />
+</p>
+
+<div id="ausgabe" style="position: absolute; left: 130px;">
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/ajaxdemoWithXML.js' %}"></script>
+{% endblock extra_js %}
+

@@ -1,0 +1,192 @@
+<!---
+Demo demonstrates use of Django templates, AJAX and DB queries
+Author: FABR
+-->
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}DB Demo 1: Show map tiles
+{% endblock %}
+
+{% block extra_css %}
+<style type="text/css">
+
+.mapconfig{
+visibility:hidden;
+}
+
+.poi{
+border: 0px;
+margin:0px 0px 0px 0px;       
+}
+
+#center_container {
+position: relative;
+height: 844px; width: 1024px;
+left: 20px; top: 0px;
+border: 0px;
+margin:0px 0px 0px 0px;       
+} 
+
+#map {
+position: absolute;
+height: 768px; width: 512px;
+left: 0px; top: 0px;
+border: 0px;
+margin:0px 0px 0px 0px;             
+}
+
+#mousepos {
+position: absolute;   
+height: 128px; width: 500px;
+left: 524px; top: 0px;
+border: 0px;
+margin:0px 0px 0px 0px;         
+}
+
+#form_section {
+position: absolute;   
+height: 500px; width: 500px;
+left: 524px; top: 130px;
+border: 0px;
+margin:0px 0px 0px 0px;         
+}
+
+#below {
+position: absolute;   
+height: 64px; width: 1024px;
+left: 0px; top: 780px;
+border: 0px;
+margin:0px 0px 0px 0px;           
+}
+
+#nw {
+position: absolute;   
+height: auto; width: 256px;    
+left: 0px; top: 0px;    
+}
+
+#ne {
+position: absolute;   
+height: auto; width: 256px;    
+left: 256px; top: 0px;    
+}
+
+#mw {
+position: absolute;   
+height: auto; width: 256px;    
+left: 0px; top: 256px;    
+}
+
+#me {
+position: absolute;   
+height: auto; width: 256px;    
+left: 256px; top: 256px;    
+}
+
+#sw {
+position: absolute;   
+height: auto; width: 256px;    
+left: 0px; top: 512px;    
+}
+
+#se {
+position: absolute;   
+height: auto; width: 256px;    
+left: 256px; top: 512px;    
+}
+
+
+</style> 
+{% endblock %}
+
+{% block content %}
+<h1>DB Demo 1</h1>
+<h2>HTML-Code per Template und DB-Query am WEB-Server</h2>
+<p>
+
+<div id="center_container">
+	<div id="map">
+		<div id="mapsource" class="mapconfig">{{mapconfig.mapsource}}</div>
+		<div id="zoom" class="mapconfig">{{mapconfig.zoom}}</div>
+		<div id="xtile" class="mapconfig">{{mapconfig.xtile}}</div>
+		<div id="ytile" class="mapconfig">{{mapconfig.ytile}}</div>
+		<div id="format" class="mapconfig">{{mapconfig.format}}</div>
+	
+		<div id="nw">
+			<img src="{{ STATIC_URL }}img/{{mapconfig.mapsource}}/{{mapconfig.zoom}}/{{mapconfig.xtile}}/{{mapconfig.ytile}}.{{mapconfig.format}}.tile"
+				alt="Tile NW" style="border: 0px" width="256" height="256" />
+		</div>
+		<div id="ne">
+			<img src="{{ STATIC_URL }}img/{{mapconfig.mapsource}}/{{mapconfig.zoom}}/{{mapconfig.xtile|add:"1"}}/{{mapconfig.ytile}}.{{mapconfig.format}}.tile"
+				alt="Tile NE" style="border: 0px" width="256" height="256" />
+		</div>
+		<div id="mw">
+			<img src="{{ STATIC_URL }}img/{{mapconfig.mapsource}}/{{mapconfig.zoom}}/{{mapconfig.xtile}}/{{mapconfig.ytile|add:"1"}}.{{mapconfig.format}}.tile"
+				alt="Tile MW" style="border: 0px" width="256" height="256" />
+		</div>
+		<div id="me">
+			<img src="{{ STATIC_URL }}img/{{mapconfig.mapsource}}/{{mapconfig.zoom}}/{{mapconfig.xtile|add:"1"}}/{{mapconfig.ytile|add:"1"}}.{{mapconfig.format}}.tile"
+				alt="Tile ME" style="border: 0px" width="256" height="256" />
+		</div>
+		<div id="sw">
+			<img src="{{ STATIC_URL }}img/{{mapconfig.mapsource}}/{{mapconfig.zoom}}/{{mapconfig.xtile}}/{{mapconfig.ytile|add:"2"}}.{{mapconfig.format}}.tile"
+				alt="Tile SW" style="border: 0px" width="256" height="256" />
+		</div>
+		<div id="se">
+			<img src="{{ STATIC_URL }}img/{{mapconfig.mapsource}}/{{mapconfig.zoom}}/{{mapconfig.xtile|add:"1"}}/{{mapconfig.ytile|add:"2"}}.{{mapconfig.format}}.tile"
+				alt="Tile SE" style="border: 0px" width="256" height="256" />
+		</div>
+		
+	</div>
+			<!-- Show points of interest as image links; use a loop over a template variable -->
+		<div id="all_pois" class="poi">
+		{% for poi in pois %}
+			<a id="poi{{poi.pk}}" href="/dbdemos/maptiles/{{mapconfig.mapsource}}/{{mapconfig.zoom}}/{{mapconfig.xtile}}/{{mapconfig.ytile}}/{{mapconfig.format}}/getPoiInfo/poi{{poi.pk}}">
+				<img border="0" style="position: absolute;
+					left: {{poi.x_coord}}px; top: {{poi.y_coord}}px;"
+				src="{{ STATIC_URL }}img/kreis.png" alt="{{poi.name}}"
+				width="11" height="11"></a>
+		{% endfor %}
+		</div>
+	
+	<div id="mousepos"></div>
+	<div id="form_section">
+		<form id="poi_form" action="/dbdemos/maptiles/{{mapconfig.mapsource}}/{{mapconfig.zoom}}/{{mapconfig.xtile}}/{{mapconfig.ytile}}/{{mapconfig.format}}/storePoiInfo"
+		 	method="POST">
+	 		{% csrf_token %}
+	 		<table>
+	 			{{ poiform.as_table }}
+	 		</table>
+	 		<input type="submit" value="Speichern">
+	 	</form>
+	 	<p id="form_feedback"></p>
+	 	
+	</div>
+	<div id="below">
+		Kartenquelle:
+		von {{mapconfig.mapsource}}/{{mapconfig.zoom}}/{{mapconfig.xtile}}/{{mapconfig.ytile}} bis
+		{{mapconfig.mapsource}}/{{mapconfig.zoom}}/{{mapconfig.xtile|add:"1"}}/{{mapconfig.ytile|add:"2"}}<br />
+		Kacheln im Format "{{mapconfig.format}}"
+	</div>
+
+</div>
+</p>
+
+{% endblock %} {% block extra_js %}
+<!--  Load our java script functionality -->
+<script src="{% static 'js/maptilesCoordinates.js' %}"></script> 
+<script src="{% static 'js/maptilesAnimate.js' %}"></script> 
+<script src="{% static 'js/maptilesGetPoiInfo.js' %}"></script>
+<script src="{% static 'js/maptilesStorePoiInfo.js' %}"></script>
+
+<!--  Execute the registration of our java script functionality -->
+<script>
+$(document).ready(
+	function() {
+		init_maptilesAnimate();
+		init_maptilesStorePoiInfo();
+		init_maptilesGetPoiInfo();
+	});
+</script>
+{% endblock extra_js %}

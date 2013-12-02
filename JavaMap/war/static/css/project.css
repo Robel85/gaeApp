@@ -1,0 +1,91 @@
+ul
+{
+    list-style-type: none;
+    font-weight: bold;
+}
+
+.mapconfig{
+visibility:hidden;
+}
+
+.poi{
+border: 0px;
+margin:0px 0px 0px 0px;       
+}
+
+#center_container {
+position: relative;
+height: 844px; width: 1024px;
+left: 20px; top: 0px;
+border: 0px;
+margin:0px 0px 0px 0px;       
+} 
+
+#map {
+position: absolute;
+height: 768px; width: 512px;
+left: 0px; top: 0px;
+border: 0px;
+margin:0px 0px 0px 0px;             
+}
+
+#mousepos {
+position: absolute;   
+height: 128px; width: 500px;
+left: 524px; top: 0px;
+border: 0px;
+margin:0px 0px 0px 0px;         
+}
+
+#form_section {
+position: absolute;   
+height: 500px; width: 500px;
+left: 524px; top: 130px;
+border: 0px;
+margin:0px 0px 0px 0px;         
+}
+
+#below {
+position: absolute;   
+height: 64px; width: 1024px;
+left: 0px; top: 780px;
+border: 0px;
+margin:0px 0px 0px 0px;           
+}
+
+#nw {
+position: absolute;   
+height: auto; width: 256px;    
+left: 0px; top: 0px;    
+}
+
+#ne {
+position: absolute;   
+height: auto; width: 256px;    
+left: 256px; top: 0px;    
+}
+
+#mw {
+position: absolute;   
+height: auto; width: 256px;    
+left: 0px; top: 256px;    
+}
+
+#me {
+position: absolute;   
+height: auto; width: 256px;    
+left: 256px; top: 256px;    
+}
+
+#sw {
+position: absolute;   
+height: auto; width: 256px;    
+left: 0px; top: 512px;    
+}
+
+#se {
+position: absolute;   
+height: auto; width: 256px;    
+left: 256px; top: 512px;
+}
+    

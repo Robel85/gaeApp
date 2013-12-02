@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+  <!-- Servlets -->
+  <servlet>
+        <servlet-name>maps</servlet-name>
+        <jsp-file>/maps.jsp</jsp-file>
+    </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>maps</servlet-name>
+    <url-pattern>/maps.*</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+        <servlet-name>sign</servlet-name>
+        <servlet-class>gae.map.client.StoreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sign</servlet-name>
+        <url-pattern>/sign</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <servlet-name>recover</servlet-name>
+        <servlet-class>gae.map.client.RecoverPoi</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>recover</servlet-name>
+        <url-pattern>/recover</url-pattern>
+    </servlet-mapping>
+  
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>maps.jsp</welcome-file>
+  </welcome-file-list>
+
+</web-app>
