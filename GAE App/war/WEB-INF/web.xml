@@ -39,10 +39,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
    
    <!-- ***** Specify Java Unified Expression Language 3.0 Over Default -->
  
-   <context-param>     
-      <param-name>com.sun.faces.expressionFactory</param-name>
-      <param-value>com.sun.el.ExpressionFactoryImpl</param-value>   
-   </context-param>
+<!--    <context-param>      -->
+<!--       <param-name>com.sun.faces.expressionFactory</param-name> -->
+<!--       <param-value>com.sun.el.ExpressionFactoryImpl</param-value>    -->
+<!--    </context-param> -->
 
    <!-- ***** Load the JavaServer Faces Servlet ***** -->
    <servlet>
@@ -55,6 +55,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
       <url-pattern>/faces/*</url-pattern>
       <url-pattern>*.jsf</url-pattern>
    </servlet-mapping>
+   
+    <servlet>
+        <servlet-name>sign</servlet-name>
+        <servlet-class>gae.StoreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sign</servlet-name>
+        <url-pattern>/sign</url-pattern>
+    </servlet-mapping>
+    
    <!-- ***** Specify session timeout of thirty (30) minutes. ***** -->
    <session-config>
       <session-timeout>30</session-timeout>

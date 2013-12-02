@@ -1,76 +1,55 @@
 package gae;
 
-import java.io.Serializable;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
-@ManagedBean
-@SessionScoped
-public class Bean implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	
-	private String pfad;
-	private String test;
+public class DataRecover {
 
-	public String getPfad() {
-		return pfad;
+	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+	public DataRecover() {
+//		// Get the Datastore Service
+//
+//		// The Query interface assembles a query
+//		Query q = new Query("Persister");
+//
+//		q.addFilter("name", Query.FilterOperator.EQUAL, "as");
+//
+//		// PreparedQuery contains the methods for fetching query results
+//		// from the datastore
+//		PreparedQuery pq = datastore.prepare(q);
+//
+//		for (Entity result : pq.asIterable()) {
+//			String desc = (String) result.getProperty("description");
+//			String lati = (String) result.getProperty("latitude");
+//			String longi = (String) result.getProperty("longitude");
+//			System.out.println(desc + " " + lati + ", " + longi);
+//		}
+
 	}
 
-	public void setPfad(String pfad) {
-		this.pfad = pfad;
-	}
-
-	public String getTest() {
-		return test;
-	}
-
-	public void setTest(String test) {
-		this.test = test;
-	}
-	
-	public void printer(){
-		if(test.equals("Java")){
-			pfad = "Valid user";
-		} else{
-			pfad = "Invalid user";
-		}
-	}
-	
 	@SuppressWarnings("deprecation")
 	public String printPoints() {
 		String s = "";
 		s = "<form id='points' action='/recover'  method='post'>";
-		
-		Key key = KeyFactory.createKey("Persister", "id");
-		Entity persister = new Entity("Persister", key);
-		
-		persister.setProperty("name", "id");
-		persister.setProperty("vari", "var");
-		
-		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		
-		datastore.put(persister);
 
 		Query q = new Query("Persister");
 		q.addFilter("name", Query.FilterOperator.NOT_EQUAL, " ");
-		
 		PreparedQuery pq = datastore.prepare(q);
+		
+		UserService userService = UserServiceFactory.getUserService();
+        User curUs = userService.getCurrentUser();
         
+
 		for (Entity result : pq.asIterable()) {
-					s = s
+			if (result != null && result.getProperty("author").toString().equals(curUs.getEmail())) {
+				s = s
 						+ "<a id='test' href='' onclick='parentNode.submit()'><img border='0' style='position: absolute;"
 						+ " top:"
 						+ result.getProperty("yCord")
@@ -80,7 +59,7 @@ public class Bean implements Serializable {
 						+ "px;'"
 						+ " src='static/img/kreis.png' alt='kreis' width='11' height='11' "
 						+ "name="+result.getProperty("name")+"></a><br/>";
-			
+			}
 		}
 
 		s = s
@@ -90,6 +69,30 @@ public class Bean implements Serializable {
 		s = s + "</form>";
 
 		return s;
+	}
+
+	public String getName(String lati, String longi) {
+
+		String name = "";
+
+		if (lati.equals("") || longi.equals("")) {
+			return "";
+		}
+
+		else
+			return name;
+	}
+
+	public String getDescription(String name) {
+
+		String description = "";
+
+		if (name.equals("")) {
+			return "";
+		}
+
+		else
+			return description;
 	}
 
 }

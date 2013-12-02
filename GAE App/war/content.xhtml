@@ -1,0 +1,108 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets">
+   
+<body>
+	<ui:composition>
+
+			<div id="mapsource" class="mapconfig">GoogleMaps</div>
+			<div id="zoom" class="mapconfig">6</div>
+			<div id="xtile" class="mapconfig">33</div>
+			<div id="ytile" class="mapconfig">20</div>
+			<div id="format" class="mapconfig">png</div> 
+			
+			<ui:insert name="imgs">
+			<ui:include src="imgTemplates.xhtml"/> 
+			</ui:insert>
+				
+				<!-- Show points of interest as image links; use a loop over a template variable -->
+	<div id="all_pois" class="poi" onmouseover="init_maptilesStorePoiInfo()">
+
+<!-- 		<%  -->
+		
+<!-- 			DataRecover rc = new DataRecover(); -->
+	
+<!-- 		%> -->
+		
+<!-- 		<div><%=rc.printPoints() %></div> <! schleife die pois von datenbank holt und ausdruckt> -->
+
+
+			</div>
+		
+		<div id="mousepos"> </div>		
+		
+		<div id="form_section">
+			<form id="poi_form" action="/sign" method="post">
+			 	
+	 		<div id="table2">
+		 		<table>
+			 		<tr>
+			 			<th><label>Name:	 		</label></th>
+			 			<td><input type="text" name="name" id="id_name"/></td>
+		 			</tr>
+		 			<tr>
+			 			<th><label>Latitude:	 		</label></th>
+			 			<td><input type="text" name="latitude" id="id_latitude"/></td>
+		 			</tr>
+		 			<tr>
+			 			<th><label>Longitude:	 		</label></th>
+			 			<td><input type="text" name="longitude" id="id_longitude" /></td>
+		 			</tr>
+		 			<tr>
+			 			<th><label>Beschreibung:	 		</label></th>
+			 			<td><input type="text" name="description" id="id_description"/></td>
+			 			<td><input type="hidden" name="xCord" id="xCord"/></td>
+			 			<td><input type="hidden" name="yCord" id="yCord"/></td>
+		 			</tr>
+		 			<tr>
+		 				<th><input type="submit" value="Speichern"/></th>	
+		 			</tr>
+		 		</table>
+		 	</div>
+		 	</form>	
+ 		
+		 
+		<form id="dropdown">
+		 	<div id="table">
+			 		<br/><br/><br/>
+			 <table>
+		 		<tr>
+		 		<th><select id="mapchange" >
+						<option id="GoogleMaps">GoogleMaps</option>
+						<option id="CloudMaps">CloudMaps</option>
+						<option id="Mapnik">Mapnik</option>
+						<option id="Relief">Relief</option>
+					</select></th>
+				</tr>
+				<tr><th><input type="submit" value="Go"/></th></tr>
+ 			</table>
+	 		</div>
+ 		</form>
+		 	
+		</div>
+		<div id="below">
+<!-- 			Kartenquelle: -->
+<!-- 			von <%= cont.getParsedPath(cont.getMaps().getWestPathList().get(0))%> bis -->
+<!-- 			<%= cont.getParsedPath(cont.getMaps().getEastPathList().get(2)) %><br /> -->
+<!-- 			Kacheln im Format "<%=cont.getFileFormat(cont.getMaps().getWestPathList().get(0))%>" -->
+		</div>
+	
+	
+	<script>
+	function load() {
+		init_maptilesAnimate();
+		init_maptilesStorePoiInfo();
+		init_maptilesGetPoiInfo();
+	}
+	</script>
+	
+	
+</ui:composition>
+</body>
+
+
+</html>
