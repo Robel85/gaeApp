@@ -98,6 +98,10 @@
 			 	
 	 		<div id="table2">
 		 		<table>
+		 			<tr>
+		 			
+		 			</tr>
+		 		
 			 		<tr>
 			 			<th><label>Name:	 		</label></th>
 			 			<td><input type="text" name="name" id="id_name" ></td>
@@ -117,7 +121,8 @@
 			 			<td><input type="hidden" name="yCord" id="yCord">
 		 			</tr>
 		 			<tr>
-		 				<th><input type="submit" value="Speichern"><th><a href="maps.jsp?id=GoogleMaps&del=delete" value="Clear All Points"></th></th>	
+		 				<th><input type="submit" value="Speichern"></th>
+		 				<th><a href="maps.jsp?del=1&id=<%=cont.targetMap %>" value="Clear All Points">Clear All Points</th>	
 		 			</tr>
 		 		</table>
 		 	</div>

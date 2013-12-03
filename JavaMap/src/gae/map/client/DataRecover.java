@@ -20,7 +20,7 @@ public class DataRecover {
 	}
 
 	public void checkXY() {
-		// prüfen ob sicht verschoben wurde und poi-positionen anpassen
+		// prüfen ob die Sicht verschoben wurde und poi-positionen anpassen
 		if (cont.countX == 0 && cont.countY == -1) {
 			cont.xDirection = 0;
 			cont.yDirection = 256;
@@ -41,7 +41,8 @@ public class DataRecover {
 		}
 	}
 
-	@SuppressWarnings("deprecation") //Methode zum löschen aller Pois
+	// Methode zum löschen aller Pois
+	@SuppressWarnings("deprecation")
 	public void deleteAllPoi() {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 
