@@ -1,5 +1,7 @@
 package gae.map.models;
 
+/*Ein Model für die Speicherung der Pfaddateien der Bilder
+ * Vorsichtshalber immutable gemacht*/
 import java.util.LinkedList;
 
 public class MapSources {
@@ -9,8 +11,8 @@ public class MapSources {
 
 	private LinkedList<PathSource> eastPathList = new LinkedList<PathSource>();
 	private LinkedList<PathSource> westPathList = new LinkedList<PathSource>();
-	
-	public MapSources(){
+
+	public MapSources() {
 
 	}
 
@@ -21,7 +23,6 @@ public class MapSources {
 	public String getxCoor() {
 		return xCoor;
 	}
-
 
 	public LinkedList<PathSource> getEastPathList() {
 		return eastPathList;
@@ -46,7 +47,5 @@ public class MapSources {
 	public void setWestPathList(LinkedList<PathSource> westPathList) {
 		this.westPathList = westPathList;
 	}
-	
-	
-	
+
 }

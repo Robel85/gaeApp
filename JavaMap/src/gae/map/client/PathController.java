@@ -10,49 +10,60 @@ public class PathController {
 	public Integer countY = 0;
 	public Integer countX = 0;
 	public String targetMap;
-	public Integer xDirection=0;
-	public Integer yDirection=0;
+	public Integer xDirection = 0;
+	public Integer yDirection = 0;
 	public HttpServletRequest request;
 	public boolean delete = false;
-	
-	public PathController(HttpServletRequest requester){
+
+	public PathController(HttpServletRequest requester) {
 		request = requester;
-		
+
 	}
-	
-	public void checkAndInitialize(){
-		
-		
-		if(request.getParameter("id")!=null&&request.getParameter("xCord")!=null&&
-				request.getParameter("yCord")!=null&&request.getParameter("yCord")!=null)
-		{
+
+	/*
+	 * Methode die alle requests-parameter abfängt und weiterverarbeitet
+	 * targetmap ist die ausgewählte Map countX und countY beschreibt in welche
+	 * Richtung die Map jeweils verschoben werden soll delete ist für die
+	 * "clear-all-pois"-Funktion
+	 */
+	public void checkAndInitialize() {
+
+		if (request.getParameter("id") != null
+				&& request.getParameter("xCord") != null
+				&& request.getParameter("yCord") != null
+				&& request.getParameter("yCord") != null) {
 			targetMap = (String) request.getParameter("id");
 			countY = Integer.parseInt(request.getParameter("yCord"));
-	 		countX = Integer.parseInt(request.getParameter("xCord"));
-		} else if(request.getParameter("del")!=null&&(request.getParameter("id")!=null)){
+			countX = Integer.parseInt(request.getParameter("xCord"));
+		} else if (request.getParameter("del") != null
+				&& (request.getParameter("id") != null)) {
 			String deleted = (String) request.getParameter("del");
 			targetMap = (String) request.getParameter("id");
-			if(deleted.equals("1")){
+			if (deleted.equals("1")) {
 				delete = true;
 			}
-		}else if(request.getParameter("id")!=null){
+		} else if (request.getParameter("id") != null) {
 			targetMap = (String) request.getParameter("id");
 			countY = 0;
 			countX = 0;
-		} 
-		else{
+		} else {
 			targetMap = "GoogleMaps";
 			countY = 0;
 			countX = 0;
 		}
 		maps.setMapName(targetMap);
-		
+
 	}
 
+	/*
+	 * Hier wird der Pfad der imgs so geparset das er so in ein img-tag
+	 * eingesetzt werden kann
+	 */
 	public void parsePaths() {
 
 		String end = ".png";
-		if(maps.getMapName()!=null && maps.getMapName().equals("Relief")) end = ".jpg";
+		if (maps.getMapName() != null && maps.getMapName().equals("Relief"))
+			end = ".jpg";
 		Integer posY = 20 + countY;
 		Integer posX = 33 + countX;
 
@@ -72,23 +83,22 @@ public class PathController {
 		}
 
 	}
-	
-	public String getParsedPath(PathSource path){
-		
-		String parsedPath ="";
-		
+
+	public String getParsedPath(PathSource path) {
+
+		String parsedPath = "";
+
 		parsedPath = path.getPath().substring(11, path.getPath().indexOf('.'));
-				
-		
-		
+
 		return parsedPath;
 	}
-	
-	public String getFileFormat(PathSource path){
-		String fileFormat ="";
-		
-		fileFormat = path.getPath().substring(path.getPath().indexOf('.')+1,path.getPath().indexOf('.')+4 );
-		
+
+	public String getFileFormat(PathSource path) {
+		String fileFormat = "";
+
+		fileFormat = path.getPath().substring(path.getPath().indexOf('.') + 1,
+				path.getPath().indexOf('.') + 4);
+
 		return fileFormat;
 	}
 

@@ -1,16 +1,19 @@
 package gae.map.models;
 
+/*Da Templating mit dem GWT nicht richtig funktionierte ist hier ein Stringbuilder
+ * der in der .jsp die navi-leiste und überschriften erzeugt */
+
 public class TemplatesHtml {
 	StringBuilder builder;
-	
-	public TemplatesHtml(){
-		
+
+	public TemplatesHtml() {
+
 	}
 
-	public String buildNavbar(){
-		
+	public String buildNavbar() {
+
 		builder = new StringBuilder();
-		
+
 		builder.append("<div class='navbar navbar-inverse navbar-fixed-top'>");
 		builder.append("<div class='navbar-inner'>");
 		builder.append("<div class='container'>");
@@ -27,12 +30,12 @@ public class TemplatesHtml {
 		return builder.toString();
 	}
 
-	public String buildHead(){
-		
+	public String buildHead() {
+
 		builder = new StringBuilder();
-		
+
 		builder.append("<h1>Web Application Map Project</h1>");
-		
+
 		return builder.toString();
 	}
 

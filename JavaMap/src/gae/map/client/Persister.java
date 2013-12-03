@@ -7,38 +7,40 @@ import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Key;
 
+/*Diese Klasse bestimmt welche Werte in die Datenbank eingetragen werden sollen*/
 @PersistenceCapable
 public class Persister {
-    @PrimaryKey
-    @Persistent(valueStrategy=IdGeneratorStrategy.IDENTITY)
-    private Key key;
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key; // Primärschlüssel
 
-    @Persistent
-    private String name;
-    
-    @Persistent
-    private String description;
+	@Persistent
+	private String name;
 
-    @Persistent
-    private String latitude;
-    
-    @Persistent
-    private String longitude;
-    
-    @Persistent
-    private String xCord;
-    
-    @Persistent
-    private String yCord;
+	@Persistent
+	private String description;
 
-    public Persister(String name, String description, String latitude, String longitude, String xCord, String yCord) {
-        this.name = name;
-        this.description = description;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.xCord = xCord;
-        this.yCord = yCord;
-    }
+	@Persistent
+	private String latitude;
+
+	@Persistent
+	private String longitude;
+
+	@Persistent
+	private String xCord;
+
+	@Persistent
+	private String yCord;
+
+	public Persister(String name, String description, String latitude,
+			String longitude, String xCord, String yCord) {
+		this.name = name;
+		this.description = description;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.xCord = xCord;
+		this.yCord = yCord;
+	}
 
 	public Key getKey() {
 		return key;
@@ -92,5 +94,4 @@ public class Persister {
 		this.yCord = yCord;
 	}
 
-   
 }

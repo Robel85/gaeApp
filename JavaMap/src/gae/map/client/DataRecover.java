@@ -1,7 +1,5 @@
 package gae.map.client;
 
-import javax.jdo.PersistenceManager;
-
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -44,8 +42,6 @@ public class DataRecover {
 	// Methode zum löschen aller Pois
 	@SuppressWarnings("deprecation")
 	public void deleteAllPoi() {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-
 		try {
 			Query q = new Query("Persister");
 			q.addFilter("name", Query.FilterOperator.NOT_EQUAL, " ");
