@@ -23,18 +23,16 @@
 <link type="text/css" rel="stylesheet" href="/static/css/bootstrap.min.css">    
 <link type="text/css" rel="stylesheet" href="/static/css/bootstrap-responsive.min.css">
 
-<script type="text/javascript" src="/static/js/maptilesCoordinates.js"/>
-<script type="text/javascript" src="/static/js/maptilesAnimate.js"/>
-<script type="text/javascript" src="/static/js/maptilesGetPoiInfo.js"/>
-<script type="text/javascript" src="/static/js/maptilesStorePoiInfo.js"/>
-<script type="text/javascript" src="/static/js/jquery-1.6.2.min.js"/>
-<script type="text/javascript" src="/static/js/jquery.form.js"/>
-<script type="text/javascript" src="/static/js/bootstrap.min.js"/>
+<script type="text/javascript" src="/static/js/maptilesCoordinates.js"></script>
+<script type="text/javascript" src="/static/js/maptilesAnimate.js"></script>
+<script type="text/javascript" src="/static/js/maptilesGetPoiInfo.js"></script>
+<script type="text/javascript" src="/static/js/maptilesStorePoiInfo.js"></script>
+<script type="text/javascript" src="/static/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.form.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="/javamap/javamap.nocache.js"/>
+<script type="text/javascript" src="/javamap/javamap.nocache.js"></script>
  </head>
- 
- 
  <body>
 <div class="container">
 	<%= new TemplatesHtml().buildNavbar() %> <%-- aufbauen der navigationsleiste--%>
@@ -119,7 +117,7 @@
 			 			<td><input type="hidden" name="yCord" id="yCord">
 		 			</tr>
 		 			<tr>
-		 				<th><input type="submit" value="Speichern"></th>	
+		 				<th><input type="submit" value="Speichern"><th><a href="maps.jsp?id=GoogleMaps&del=delete" value="Clear All Points"></th></th>	
 		 			</tr>
 		 		</table>
 		 	</div>
@@ -130,7 +128,7 @@
 			<table>
 			
 			<tr>
-				<ul>			
+				<ul>			<!-- Maps können über diese Links gewechselt werden -->
 					<li><a href="maps.jsp?id=GoogleMaps">GoogleMaps</a></li>
 					<li><a href="maps.jsp?id=Cloudmade">Cloudmade</a>	</li>
 					<li><a href="maps.jsp?id=Mapnik">Mapnik</a></li>
@@ -139,7 +137,7 @@
 				</ul>
 			</tr>
 			
-				<tr>
+				<tr>		<!-- Buttons für die leichtere Navigation -->
 					<a href="maps.jsp?id=<%=cont.targetMap %>&xCord=0&yCord=-1">
 					<img alt="up" src="/static/img/arrow_up_4.png" width="120px"></a>
 	

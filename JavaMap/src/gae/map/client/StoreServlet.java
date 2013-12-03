@@ -10,10 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.appengine.api.users.User;
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
-
 @SuppressWarnings("serial")
 public class StoreServlet extends HttpServlet {
 	
@@ -29,11 +25,9 @@ public class StoreServlet extends HttpServlet {
         String longitude = req.getParameter("longitude");
         String xCord = req.getParameter("xCord");
         String yCord = req.getParameter("yCord");
+
         
-        UserService userService = UserServiceFactory.getUserService();
-        User user = userService.getCurrentUser();
-        
-        Persister persisting = new Persister(name, user, description, latitude, longitude, xCord, yCord);
+        Persister persisting = new Persister(name, description, latitude, longitude, xCord, yCord);
 
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {

@@ -13,6 +13,7 @@ public class PathController {
 	public Integer xDirection=0;
 	public Integer yDirection=0;
 	public HttpServletRequest request;
+	public boolean delete = false;
 	
 	public PathController(HttpServletRequest requester){
 		request = requester;
@@ -28,11 +29,17 @@ public class PathController {
 			targetMap = (String) request.getParameter("id");
 			countY = Integer.parseInt(request.getParameter("yCord"));
 	 		countX = Integer.parseInt(request.getParameter("xCord"));
-		} else if(request.getParameter("id")!=null){
+		} else if(request.getParameter("del")!=null&&(request.getParameter("id")!=null)){
+			String deleted = (String) request.getParameter("del");
+			targetMap = (String) request.getParameter("id");
+			if(deleted.equals("1")){
+				delete = true;
+			}
+		}else if(request.getParameter("id")!=null){
 			targetMap = (String) request.getParameter("id");
 			countY = 0;
 			countX = 0;
-		}
+		} 
 		else{
 			targetMap = "GoogleMaps";
 			countY = 0;

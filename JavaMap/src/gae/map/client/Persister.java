@@ -6,7 +6,6 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.users.User;
 
 @PersistenceCapable
 public class Persister {
@@ -16,9 +15,6 @@ public class Persister {
 
     @Persistent
     private String name;
-
-    @Persistent
-    private User author;
     
     @Persistent
     private String description;
@@ -35,9 +31,8 @@ public class Persister {
     @Persistent
     private String yCord;
 
-    public Persister(String name, User author, String description, String latitude, String longitude, String xCord, String yCord) {
+    public Persister(String name, String description, String latitude, String longitude, String xCord, String yCord) {
         this.name = name;
-        this.author = author;
         this.description = description;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -51,10 +46,6 @@ public class Persister {
 
 	public String getName() {
 		return name;
-	}
-
-	public User getAuthor() {
-		return author;
 	}
 
 	public String getDescription() {
@@ -79,10 +70,6 @@ public class Persister {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public void setAuthor(User author) {
-		this.author = author;
 	}
 
 	public void setDescription(String description) {
